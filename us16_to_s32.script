@@ -1,0 +1,18 @@
+def us16_to_s32(high_reg, low_reg):
+	
+	high_reg_2 = high_reg*65536
+	bit32_reg = high_reg_2 + low_reg
+
+	if bit32_reg <= 2147483647:
+		return (bit32_reg)
+	else:
+		high_reg = 65535 - high_reg
+		high_reg = high_reg*65536
+		low_reg = 65535 - low_reg
+		bit32_reg = 0 - (high_reg + low_reg + 1)
+		return(bit32_reg)
+	end
+	
+	
+
+end

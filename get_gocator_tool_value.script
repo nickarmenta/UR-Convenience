@@ -1,0 +1,17 @@
+def get_gocator_tool_value(IP, tool_id):
+	
+	high_register = (1000+ (tool_id*5))-(tool_id*2)
+	low_register = high_register + 1
+
+	modbus_add_signal(IP, 255, low_register, 2, "low_register")
+	modbus_add_signal(IP, 255, high_register, 2, "high_register")
+	value_low = modbus_get_signal_status("low_register")
+	value_high = modbus_get_signal_status("high_register")
+	modbus_delete_signal("low_register")
+	modbus_delete_signal("high_register")
+	
+	value = us16_to_s32(value_high, value_low)/1000
+
+return value
+
+end

@@ -1,0 +1,11 @@
+def get_gocator_tool_decision(IP, tool_id):
+	
+	tool_decision_reg = (1000+ (tool_id*5))-(tool_id*2) + 2
+
+	modbus_add_signal(IP, 255, tool_decision_reg, 2, "tool_decision_reg")
+	value_decision = modbus_get_signal_status("tool_decision_reg")
+	modbus_delete_signal("tool_decision_reg")	
+
+return value_decision
+
+end
